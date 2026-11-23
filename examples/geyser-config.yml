@@ -1,0 +1,32 @@
+# The Geyser settings that matter for this setup.
+# These are excerpts — merge them into your generated
+# plugins/Geyser-Spigot/config.yml, do NOT replace the whole file.
+
+bedrock:
+  address: 0.0.0.0
+  port: 19132
+  # 0 = use the "port" value (19132) for NetherNet media too.
+  webrtc-port: 0
+  transport: nethernet
+  clone-remote-port: false
+
+  signaling:
+    # hybrid = builtin (local signaling listener) + nxs (Warden).
+    # MCXboxBroadcast relays console players to the LOCAL listener, so it
+    # needs builtin or hybrid. Use plain "nxs" only if you do not run
+    # MCXboxBroadcast / do not need console support.
+    mode: hybrid
+    advertise-addresses: []
+    nxs:
+      token: ''
+      endpoint: https://agent.warden.cloud
+
+# Let Bedrock players join without a paid Java account.
+java:
+  auth-type: floodgate
+
+advanced:
+  nxs:
+    # Lets Warden help players connect when the server is behind NAT
+    # without port forwarding.
+    assisted-joins: true

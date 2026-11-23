@@ -1,0 +1,25 @@
+# Crafty Controller on host networking, tuned for Geyser NetherNet + MCXboxBroadcast.
+# Place this as compose.yml in your Crafty folder (e.g. ~/crafty) and run:
+#   sudo docker compose down && sudo docker compose up -d
+#
+# Notes:
+# - network_mode: host avoids Docker's bridge NAT, which breaks NetherNet WebRTC.
+#   With host networking there is NO "ports:" block.
+# - JAVA_TOOL_OPTIONS forces IPv4, which fixes MCXboxBroadcast HTTP timeouts on
+#   hosts with broken IPv6. Harmless on hosts with working IPv6.
+# - Change TZ to your timezone.
+services:
+  crafty:
+    container_name: crafty_container
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    restart: always
+    network_mode: host
+    environment:
+      - TZ=America/New_York
+      - JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true
+    volumes:
+      - ./docker/backups:/crafty/backups
+      - ./docker/logs:/crafty/logs
+      - ./docker/servers:/crafty/servers
+      - ./docker/config:/crafty/app/config
+      - ./docker/import:/crafty/import

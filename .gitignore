@@ -1,0 +1,21 @@
+# Never commit secrets, tokens, or world data.
+
+# Crafty / server data
+docker/
+servers/
+worlds/
+*.jar
+
+# Geyser / Floodgate / MCXboxBroadcast secrets and caches
+**/plugins/Geyser-Spigot/config.yml
+**/plugins/Geyser-Spigot/nethernet/
+**/plugins/Geyser-Spigot/extensions/**/cache/
+**/plugins/Geyser-Spigot/extensions/**/*.json
+**/key.pem
+**/saved-refresh-tokens.json
+operator-link.txt
+default-creds.txt
+
+# Logs
+*.log
+logs/
